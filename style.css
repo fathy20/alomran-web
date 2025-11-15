@@ -233,7 +233,7 @@ nav {
 
 /* Hero background image variant (user requested images/33.jpg with blue overlay and reduced opacity) */
 .hero.hero-image {
-    background-image: linear-gradient(rgba(10, 63, 116, 0.55), rgba(10, 63, 116, 0.55)), url('../images/33.jpg');
+    background-image: linear-gradient(rgba(10, 63, 116, 0.55), rgba(10, 63, 116, 0.55)), url('images/33.jpg');
     background-size: cover;
     background-position: center center;
 }
@@ -664,6 +664,7 @@ footer .container {
     .hero-grid {
         grid-template-columns: 1fr 1fr;
     }
+    /* hero media element removed; no additional styles required */
     .hero-truck {
         display: flex;
     }
