@@ -72,4 +72,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-});
+        // --- 3. إرسال نموذج الاتصال عبر واتساب ---
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                // جمع القيم من الحقول
+                const fullName = document.getElementById('fullName')?.value.trim() || '';
+                const phone = document.getElementById('phone')?.value.trim() || '';
+                const email = document.getElementById('email')?.value.trim() || '';
+                const serviceType = document.getElementById('serviceType')?.value || '';
+                const message = document.getElementById('message')?.value.trim() || '';
+
+                // بناء نص الرسالة بالعربية (استخدم سطر جديد \n ثم رمزّن النص مرة واحدة)
+                let text = `الاسم: ${fullName}\n`;
+                text += `الجوال: ${phone}\n`;
+                if (email) text += `البريد الإلكتروني: ${email}\n`;
+                if (serviceType) text += `الخدمة المطلوبة: ${serviceType}\n`;
+                if (message) text += `الرسالة: ${message}\n`;
+
+                // رقم الواتساب المطلوب (بدون علامة +)
+                const waNumber = '966549573006';
+
+                // فتح واتساب في نافذة جديدة (wa.me) مع النص المشفر
+                const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
+                window.open(waUrl, '_blank');
+
+                // لا نمنع الإرسال الافتراضي: هذا يسمح للنموذج أن يُرسَل أيضاً إلى السيرفر
+                // (إذا أردت التعامل عبر AJAX بدل الإرسال الطبيعي أخبرني لأعدّل).
+            });
+        }
+
+    });
